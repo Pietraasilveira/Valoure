@@ -1,0 +1,248 @@
+{% if cadastro_area == 'section' %}
+<!-- CLIENTES -->
+
+            <section id="clientes" class="content-section" style="display:none;">
+
+                <div class="section-header">
+
+                    <h2>Gestão de Clientes</h2>
+
+                    <button class="btn-primary" onclick="openModal('clienteModal')">
+
+                        Novo Cliente
+
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table id="clientesTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Nome</th>
+                                <th>E-mail</th>
+                                <th>Senha</th>
+                                <th style="width: 200px;">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="clientesBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+            <!-- VENDAS -->
+            <section id="vendas" class="content-section" style="display:none;">
+                <div class="section-header">
+                    <div>
+                        <h2>Vendas</h2>
+                        <p class="section-subtitle">Histórico e registro de pedidos</p>
+                    </div>
+                    <button class="btn-primary venda-nova-btn" onclick="openModal('vendaModal')">
+                        <span class="btn-icon">+</span> Nova Venda
+                    </button>
+                </div>
+
+                <!-- Cards de resumo rápido -->
+                <div class="vendas-summary-row" id="vendasSummary">
+                    <div class="vsummary-card">
+                        <span class="vsummary-label">Total de vendas</span>
+                        <span class="vsummary-value" id="vsTotalVendas">—</span>
+                    </div>
+                    <div class="vsummary-card">
+                        <span class="vsummary-label">Receita total</span>
+                        <span class="vsummary-value" id="vsReceita">—</span>
+                    </div>
+                    <div class="vsummary-card">
+                        <span class="vsummary-label">Última venda</span>
+                        <span class="vsummary-value" id="vsUltima">—</span>
+                    </div>
+                </div>
+
+                <div class="table-container vendas-table-container">
+                    <table id="vendasTable">
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Cliente</th>
+                                <th>Produto</th>
+                                <th>Qtd</th>
+                                <th>Categoria</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="vendasBody"></tbody>
+                    </table>
+                </div>
+
+            </section>
+
+
+{% elif cadastro_area == 'modal' %}
+<!-- MODAL CLIENTE -->
+
+        <div id="clienteModal" class="modal">
+
+            <div class="modal-content">
+
+                <h3>Cadastrar Cliente</h3>
+
+                <form id="clienteForm">
+
+                    <input type="text" id="cNome" placeholder="Nome Completo" required>
+
+                    <input type="email" id="cEmail" placeholder="E-mail" required>
+
+                    <input type="password" id="cSenha" placeholder="Senha" required>
+
+                    <div class="modal-actions">
+
+                        <button type="button" class="btn-secondary" onclick="closeModal('clienteModal')">
+
+                            Cancelar
+
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+
+                            Salvar
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+        <!-- MODAL VENDAS -->
+        <div id="vendaModal" class="modal">
+            <div class="modal-content venda-modal-content">
+
+                <div class="venda-modal-header">
+                    <div>
+                        <h3>Registrar Venda</h3>
+                        <p class="venda-modal-sub">Selecione cliente, produtos e finalize o pedido</p>
+                    </div>
+                    <button class="venda-modal-close" onclick="closeModal('vendaModal')" type="button">✕</button>
+                </div>
+
+                <div class="venda-layout">
+
+                    <!-- Coluna esquerda: Formulário -->
+                    <div class="venda-form-col">
+
+                        <form id="vendaForm">
+
+                            <div class="venda-form-group">
+                                <label class="venda-label">Cliente</label>
+                                <select id="vCliente" class="venda-select" required>
+                                    <option value="">Selecione o cliente</option>
+                                </select>
+                            </div>
+
+                            <div class="venda-form-row">
+                                <div class="venda-form-group">
+                                    <label class="venda-label">Status do Pedido</label>
+                                    <select id="vStatus" class="venda-select">
+                                        <option value="Concluído">Concluído</option>
+                                        <option value="Pendente">Pendente</option>
+                                    </select>
+                                </div>
+                                <div class="venda-form-group">
+                                    <label class="venda-label">Categoria</label>
+                                    <select id="vCategoria" class="venda-select">
+                                        <option value="">Todas as categorias</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="venda-form-group">
+                                <label class="venda-label">Endereço de Entrega</label>
+                                <input type="text" id="vEndereco" class="venda-input" placeholder="CEP, Rua, Número">
+                            </div>
+
+                            <div class="venda-produto-picker">
+                                <div class="venda-form-group venda-produto-select-wrap">
+                                    <label class="venda-label">Produto</label>
+                                    <select id="vPerfume" class="venda-select">
+                                        <option value="">Selecione um produto</option>
+                                    </select>
+                                </div>
+                                <div class="venda-form-group venda-qty-wrap">
+                                    <label class="venda-label">Qtd</label>
+                                    <div class="qty-stepper">
+                                        <button type="button" class="qty-btn" onclick="changeQty(-1)">−</button>
+                                        <input type="number" id="vQuantidade" class="qty-input" value="1" min="1">
+                                        <button type="button" class="qty-btn" onclick="changeQty(1)">+</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn-add-cart" onclick="adicionarAoCarrinho()">
+                                <span>+ Adicionar ao Carrinho</span>
+                            </button>
+
+                            <div class="venda-nota-check">
+                                <label class="venda-toggle-label">
+                                    <input type="checkbox" id="vGerarNota" checked>
+                                    <span class="venda-toggle-track"></span>
+                                    <span class="venda-toggle-text">Gerar nota fiscal ao finalizar</span>
+                                </label>
+                            </div>
+
+                            <div class="venda-form-actions">
+                                <button type="button" class="btn-cancel-venda" onclick="closeModal('vendaModal')">Cancelar</button>
+                                <button type="submit" class="btn-finalizar">Finalizar Venda</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                    <!-- Coluna direita: Carrinho -->
+                    <div class="venda-cart-col" id="carrinhoLateral">
+                        <div class="cart-header">
+                            <span class="cart-title">Carrinho</span>
+                            <span class="cart-badge" id="cartBadge">0</span>
+                        </div>
+
+                        <div id="carrinhoItens" class="cart-items-list">
+                            <div class="cart-empty" id="carrinhoVazio">
+                                <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                                    <circle cx="20" cy="20" r="19" stroke="rgba(198,161,110,0.3)" stroke-width="1.5"/>
+                                    <path d="M13 16h14l-2 10H15L13 16z" stroke="rgba(198,161,110,0.5)" stroke-width="1.2" fill="none" stroke-linejoin="round"/>
+                                    <path d="M10 13h3l1.5 3" stroke="rgba(198,161,110,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+                                    <circle cx="16" cy="28" r="1.2" fill="rgba(198,161,110,0.5)"/>
+                                    <circle cx="22" cy="28" r="1.2" fill="rgba(198,161,110,0.5)"/>
+                                </svg>
+                                <p>Carrinho vazio</p>
+                            </div>
+                        </div>
+
+                        <div class="cart-footer">
+                            <div class="cart-row">
+                                <span class="cart-row-label">Subtotal</span>
+                                <span class="cart-row-value" id="cartSubtotal">R$ 0,00</span>
+                            </div>
+                            <div class="cart-row cart-row-total">
+                                <span class="cart-row-label">Total</span>
+                                <span class="cart-total-value" id="cartTotal">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+{% endif %}

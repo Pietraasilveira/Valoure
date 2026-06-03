@@ -1,0 +1,142 @@
+{% if produtos_area == 'section' %}
+<!-- PRODUTOS -->
+
+            <section id="perfumes" class="content-section" style="display:none;">
+
+                <div class="section-header">
+
+                    <h2>Gestão de Produtos</h2>
+
+                    <button class="btn-primary" onclick="openModal('perfumeModal')">
+
+                        Novo Produto
+
+                    </button>
+
+                </div>
+
+                <div class="table-container">
+
+                    <table id="perfumesTable">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Imagem</th>
+
+                                <th>Nome</th>
+
+                                <th>Preço</th>
+
+                                <th>Estoque</th>
+
+                                <th>Marca</th>
+
+                                <th>Categoria</th>
+
+                                <th>Descrição</th>
+
+                                <th style="width: 200px;">Ações</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="perfumesBody"></tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+{% elif produtos_area == 'modal' %}
+<!-- MODAL PRODUTO -->
+
+        <div id="perfumeModal" class="modal">
+
+            <div class="modal-content">
+
+                <h3>Cadastrar Produto</h3>
+
+                <form id="perfumeForm">
+
+                    <input type="text" id="pNome" placeholder="Nome do Produto" required>
+
+                    <input type="number" id="pPreco" placeholder="Preço" step="0.01" required>
+
+                    <input type="number" id="pEstoque" placeholder="Estoque" required>
+
+                    <input type="text" id="pMarca" placeholder="Marca" required>
+
+                    <select id="pCategoria" required>
+
+                        <option value="" disabled selected>
+
+                            Selecione a Categoria
+
+                        </option>
+
+                        <option value="Perfume Masculino">
+                            Perfume Masculino
+                        </option>
+
+                        <option value="Perfume Feminino">
+                            Perfume Feminino
+                        </option>
+
+                        <option value="Perfume Unissex">
+                            Perfume Unissex
+                        </option>
+
+                        <option value="Hidratantes">
+                            Hidratantes
+                        </option>
+
+                        <option value="Body splash">
+                            Body splash
+                        </option>
+
+                        <option value="Maquiagens">
+                            Maquiagens
+                        </option>
+
+                        <option value="Skincare">
+                            Skincare
+                        </option>
+
+                        <option value="Cosméticos em geral">
+                            Cosméticos em geral
+                        </option>
+
+                    </select>
+
+                    <!-- IMAGEM -->
+                    <label for="pImagemArquivo" style="display: block; margin-bottom: 5px; font-size: 14px; color: var(--header-footer);">Imagem do Produto:</label>
+                    <input type="file" id="pImagemArquivo" accept="image/*" style="margin-bottom: 15px;">
+                    <input type="hidden" id="pImagem">
+
+                    <input type="text" id="pDescricao" placeholder="Descrição" required>
+
+                    <div class="modal-actions">
+
+                        <button type="button" class="btn-secondary" onclick="closeModal('perfumeModal')">
+
+                            Cancelar
+
+                        </button>
+
+                        <button type="submit" class="btn-primary">
+
+                            Salvar
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+{% endif %}

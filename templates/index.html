@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Valouré Perfumaria - Sistema de Gestão</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/login_styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    {% include 'login.html' %}
+
+    <!-- SISTEMA -->
+
+    <div id="mainSystem" style="display:none;">
+
+        <!-- HEADER -->
+
+        <header>
+
+            <div class="container header-content">
+
+                <div class="logo">
+
+                    <img src="static/img/Logo.png" alt="Logo" class="dashboard-logo">
+
+                    <span class="logo-text">
+
+                        Valouré
+
+                    </span>
+
+                </div>
+
+                <nav>
+
+                    <ul>
+
+                        <li>
+                            <a href="#" onclick="showSectionEnhanced('dashboard')">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" onclick="showSectionEnhanced('perfumes')">
+                                Produtos
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" onclick="showSectionEnhanced('clientes')">
+                                Clientes
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#" onclick="showSectionEnhanced('vendas')">
+                                Vendas
+                            </a>
+                        </li>
+
+
+
+                        <li>
+                            <a href="#" id="btnLogout" class="logout-link">
+                                Sair
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </header>
+
+        <!-- MAIN -->
+
+        <main class="container">
+
+            {% include 'dashboard.html' %}
+
+            {% set produtos_area = 'section' %}
+            {% include 'produtos.html' %}
+
+            {% set cadastro_area = 'section' %}
+            {% include 'cadastro.html' %}
+
+        </main>
+
+        {% set produtos_area = 'modal' %}
+        {% include 'produtos.html' %}
+
+        {% set cadastro_area = 'modal' %}
+        {% include 'cadastro.html' %}
+
+    </div>
+
+    <script src="static/js/script.js"></script>
+</body>
+
+</html>

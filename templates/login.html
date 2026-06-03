@@ -1,0 +1,73 @@
+<div id="loginScreen">
+    <div class="login-container">
+
+        <!-- Lado Esquerdo: imagem com overlay -->
+        <div class="login-left">
+            <img src="/static/img/logo.jpg" alt="Logo Valouré" class="login-bg-image">
+            <div class="login-overlay"></div>
+            <div class="login-left-brand">
+                <span class="login-left-title">Valouré</span>
+                <span class="login-left-sub">Perfumaria &amp; Beleza</span>
+            </div>
+        </div>
+
+        <!-- Lado Direito: formulário -->
+        <div class="login-right">
+            <div class="login-form-wrapper">
+
+                <div class="login-brand-badge">
+                    <span class="login-brand-v">V</span>
+                </div>
+
+                <h1 class="login-title">Bem-vindo</h1>
+                <p class="login-subtitle">Acesse sua conta para continuar</p>
+
+                <form id="loginForm" class="login-form">
+
+                    <div class="login-input-group">
+                        <span class="login-input-icon">👤</span>
+                        <input
+                            type="email"
+                            id="username"
+                            class="login-input"
+                            placeholder="Seu e-mail"
+                            autocomplete="email"
+                            required
+                        >
+                    </div>
+
+                    <div class="login-input-group">
+                        <span class="login-input-icon">🔒</span>
+                        <input
+                            type="password"
+                            id="password"
+                            class="login-input"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                            required
+                        >
+                    </div>
+
+                    <div id="loginError" class="login-error-message">
+                        <span class="error-icon">⚠</span>
+                        <span class="error-text">Usuário ou senha incorretos.</span>
+                    </div>
+
+                    <button type="submit" class="login-btn btn-login">
+                        <span class="btn-text">ENTRAR</span>
+                    </button>
+
+                </form>
+
+                <div class="login-footer-links">
+                    <a href="#" class="login-link">Esqueceu a senha?</a>
+                </div>
+
+                <div class="login-footer">
+                    <p class="footer-text">Sistema de Gestão Valouré © 2026</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

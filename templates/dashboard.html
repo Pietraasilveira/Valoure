@@ -1,0 +1,66 @@
+<!-- DASHBOARD -->
+
+            <section id="dashboard" class="content-section">
+
+                <h2>Dashboard</h2>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+
+                        <h3>Total de Produtos</h3>
+
+                        <p id="stat-perfumes">0</p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h3>Clientes Ativos</h3>
+
+                        <p id="stat-clientes">0</p>
+
+                    </div>
+
+                    <div class="stat-card">
+
+                        <h3>Vendas Realizadas</h3>
+
+                        <p id="stat-vendas">0</p>
+
+                    </div>
+
+                </div>
+
+                <div class="dashboard-charts" style="display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 30px; margin-top: 40px; align-items: start;">
+                    <!-- Gráfico -->
+                    <div class="chart-container" style="background: #fff; padding: 30px; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); height: 100%;">
+                        <h3 style="font-family: 'Playfair Display', serif; color: #5A4033; margin-bottom: 25px; font-size: 1.4rem;">Categorias Mais Vendidas</h3>
+                        <div style="height: 350px; position: relative;">
+                            <canvas id="categoriasChart"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Últimas Vendas -->
+                    <div class="recent-sales" style="background: #fff; padding: 30px; border-radius: 22px; box-shadow: 0 10px 30px rgba(0,0,0,0.04); height: 100%;">
+                        <h3 style="font-family: 'Playfair Display', serif; color: #5A4033; margin-bottom: 25px; font-size: 1.4rem;">Últimas Vendas</h3>
+                        <div class="table-container" style="box-shadow: none; border: none; padding: 0;">
+                            <table style="font-size: 0.85rem; width: 100%;">
+                                <thead style="background: #432904; color: white;">
+                                    <tr>
+                                        <th style="padding: 12px;">Cliente</th>
+                                        <th style="padding: 12px;">Produto</th>
+                                        <th style="padding: 12px;">Categoria</th>
+                                        <th style="padding: 12px;">Valor</th>
+                                        <th style="padding: 12px;">Data</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ultimasVendasBody">
+                                    <!-- Preenchido via JS -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
